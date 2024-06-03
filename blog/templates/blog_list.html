@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+    Blogs
+{% endblock %}
+
+{% block content %}
+    <div class="banner-container">
+        <h1 class="white pb-3">Connecting Heart Through Words</h1>
+        <form method="GET" class="search-form">
+            <div class="input-group blog-search">
+              <input type="text" name="q" class="form-control mr-2" placeholder="Search by title" value="{{ request.GET.q }}">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>  
+        </form>
+    </div>
+    <ul class="list-group">
+        {% for blog in blogs %}
+        <li class="list-group-item mb-3">
+            <h2>
+                <a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a>
+            </h2>
+            <p>{{ blog.content|truncatewords:30 }}</p>
+            <small class="text-muted">{{ blog.date|date:"d M Y h:i A" }}</small>
+        </li>
+        {% endfor %}
+    </ul>
+    {% if not blogs %}
+        <p>No blogs available.</p>
+    {% endif %}
+{% endblock %}
