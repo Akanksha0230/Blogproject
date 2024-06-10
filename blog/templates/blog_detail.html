@@ -1,0 +1,128 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <div class="card mb-4">
+                {% if blog.image %}
+                <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h1 id="detail-title" class="card-title">{{ blog.title }}</h1>
+                    <p id="detail-content" class="card-text">{{ blog.content }}</p>
+                    {% if blog.tags.all %}
+                        <p id="detail-tags" class="card-text"><strong>Tags:</strong>
+                            {% for tag in blog.tags.all %}
+                                <span class="badge badge-primary">{{ tag.name }}</span>
+                            {% endfor %}
+                        </p>
+                    {% else %}
+                        <p class="card-text"><em>No tags available for this blog.</em></p>
+                    {% endif %}
+                    <p id="detail-date" class="card-text"><small class="text-muted">Posted on: {{ blog.date |date:"d M Y h:i A"  }}</small></p>
+                    {% if blog.author.profile_image %}
+                        <p id="detail-postedby" class="card-text">
+                            <strong>Posted By:</strong>
+                            {{ blog.author.username }}
+                            <img alt="{{ blog.author.username }}" src="{{ blog.author.profile_image.url }}" class="img-thumbnail mb-3" width="150" height="150">
+                            
+                        </p>
+                    {% else %}
+                        <p class="card-text"><em>No image available for this blog.</em></p>
+                    {% endif %}
+                    <p class="card-text"><strong>Likes:</strong> <span id="like-count">{{ blog.likes }}</span></p>
+                    {% if user != blog.author %}
+                        {% csrf_token %}
+                        <button type="submit" id="like-btn" class="btn btn-primary">Like</button>
+                      
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Comments</h5>
+                    <ul id="comment-list" class="list-group list-group-flush">
+                        {% for comment in blog.comments.all %}
+                            <li class="list-group-item">
+                                {{ comment.content }} - <strong>{{ comment.user.username }}</strong> on {{ comment.date }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    {% if user.is_authenticated %}
+                        <form id="comment-form" class="mt-4">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="comment-content">Add a comment:</label>
+                                <textarea id="comment-content" name="content" class="form-control" rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Comment</button>
+                        </form>
+                        
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.blogId = "{{ blog.id }}";
+    window.csrfToken = "{{ csrf_token }}";
+    window.isAuthenticated = "{{ user.is_authenticated|yesno:'true,false' }}";
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+<h1>{{ blog.title }}</h1>
+<img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+<p>{{ blog.content }}</p>
+{% if tags %}
+  <p>Tags: {% for tag in blog.tags.all %}{{ tag.name }} {% endfor %}</p>
+{% else %}
+  <p>No tags available for this blog.</p>
+{% endif %}
+<p>Posted on: {{ blog.date |date:"d M Y h:i A"  }}</p>
+{% if  blog.author.profile_image.url %}
+  <p>Posted By:  <img alt="{{ blog.author.username }}" src="{{ blog.author.profile_image.url }}"  class="img-thumbnail mb-3"  width="150" height="150">{{ blog.author.username }}</p>
+{% else %}
+  <p>No image available for this blog.</p>
+{% endif %}
+<p>Likes: {{ blog.likes.count }}</p>
+<p>Comments:</p>
+<ul>
+    {% for comment in comments %}
+    <li>{{ comment.content }} - {{ comment.user.username }} on {{ comment.date }}</li>
+    {% endfor %}
+</ul>
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'comment_blog' blog.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add Comment">
+</form>
+<form method="POST" action="{% url 'like_blog' blog.id %}">
+    {% csrf_token %}
+    <input type="submit" value="Like">
+</form>
+{% endif %}
+-->
