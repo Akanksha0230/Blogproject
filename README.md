@@ -1,6 +1,5 @@
 # Blogproject
 
-##INTRODUCTION
 The Django Blog Project is a comprehensive web application designed to offer users a seamless and engaging platform for blogging. With a user-friendly interface and robust functionality, the project enables both content creators and consumers to interact effortlessly with blog posts. From intuitive search and filtering options to secure user authentication and profile management, the project prioritizes user experience and security. By empowering content creators with features like blog creation, update, and deletion, and facilitating community engagement through likes, comments, and user profiles, the Django Blog Project aims to provide a dynamic and inclusive blogging experience for all users.
 
 Key Features:
