@@ -49,9 +49,8 @@ Key Features:
 - [Application features](#features)
 - [Frontend Overview](#Frontend)
 - [API Endpoints](#API_Endpoints)
-- [Deployment Considerations](#Deployment)
+- [Deployment](#Deployment)
 - [License](#License)
-- [Deployment](#deployment)
 
  #setup-and-installation:
  1. Django Setup: 
