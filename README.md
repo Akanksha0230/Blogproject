@@ -35,7 +35,7 @@ Key Features:
 8.Forgot Password Functionality:
 >>The login modal includes a "Forgot Password" option, allowing users to recover access to their accounts if they forget their password.
 
-9. Email Functionality:
+9.Email Functionality:
 >>Users can request password reset by providing their email address.
 >>An OTP code is sent to the user's email for verification.
 >>Users can reset their password using the OTP code and a new password.
