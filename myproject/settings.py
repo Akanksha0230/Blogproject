@@ -28,9 +28,9 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SECRET_KEY = 'django-insecure-^v@f30u74u=a!3r7xm-vmcu^a&qlzhkor)wvdyrb_!c@_72nd7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['akankshabansod.pythonanywhere.com']
 
 
 # Application definition
