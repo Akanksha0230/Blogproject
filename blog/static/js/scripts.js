@@ -401,5 +401,3 @@ $(document).ready(function () {
         });
     });  
 });
-
-
