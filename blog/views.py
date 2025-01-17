@@ -280,3 +280,4 @@ def profile_view(request):
         return JsonResponse({'blog_titles': blog_titles})
     else:
         return render(request, 'base_generic.html') 
+    
