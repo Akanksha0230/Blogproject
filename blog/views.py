@@ -281,4 +281,3 @@ def profile_view(request):
     else:
         return render(request, 'base_generic.html') 
     
-
